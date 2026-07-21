@@ -1,0 +1,58 @@
+site_name: "LG Home AI 팀플"
+site_description: "LG Home AI 팀 프로젝트 — 아이디어·프로세스·협업 방법론 정본"
+repo_url: https://github.com/iejunkimu/lg-home-ai-team
+repo_name: iejunkimu/lg-home-ai-team
+docs_dir: docs
+
+theme:
+  name: material
+  language: ko
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: 다크 모드로 전환
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: 라이트 모드로 전환
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - 홈: index.md
+  - 프로세스:
+      - 아이디어 설계 프로세스: process/아이디어-설계-프로세스.md
+      - 아이디어 선택 기준: process/아이디어-선택-기준.md
+      - 메인 주제 임의 선정하기: process/메인-주제-임의-선정하기.md
+      - 브레인스토밍: process/브레인-스토밍.md
+      - 회의록 06-29 아이디어 브레인스토밍: process/회의록-06-29-아이디어-브레인스토밍.md
+      - 팀원 펜 컬러: process/팀원-펜-컬러.md
+      - Notion 복구 인덱스: process/_notion-recovery-index.md
+  - 아이디어:
+      - AI Virtual Zoning: ideas/ai-virtual-zoning.md
+      - 냉장고 ERP 서비스: ideas/냉장고-erp-서비스.md
+      - 베이비 제로터치 로그: ideas/베이비-제로-터치-로그.md
+      - 스마트옷장: ideas/스마트옷장.md
+      - 유럽 타겟팅 에어컨 시스템: ideas/유럽-타겟팅-에어컨-시스템.md
+  - 방법론:
+      - 저장층 셋업 가이드(toolchain): methodology/toolchain.md
+      - Git·GitHub 협업: methodology/git-github-협업.md

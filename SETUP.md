@@ -152,6 +152,16 @@ EOF
 
 ---
 
+## 3.5. GitHub Pages 소스 = "GitHub Actions"
+
+MkDocs Material 빌드·배포는 이미 배선됨 (`mkdocs.yml` + `.github/workflows/deploy.yml` + `requirements.txt`, `docs/methodology/toolchain.md` § 5 참고). `main`에 push할 때마다 자동으로 빌드·배포되지만, Pages 자체가 어느 소스를 쓸지는 저장소 설정에서 한 번 지정해야 한다.
+
+1. 저장소 → **Settings** → **Pages**
+2. **Build and deployment → Source**를 "Deploy from a branch"에서 **"GitHub Actions"**로 변경
+3. `main`에 다음 push가 일어나면 워크플로가 자동 실행되고, 완료 후 `https://iejunkimu.github.io/lg-home-ai-team/`에서 확인 가능
+
+---
+
 ## 4. Obsidian · Obsidian Git · Dataview 플러그인 설치
 
 `docs/methodology/toolchain.md` § 1~2 상세 참고. 각 팀원이 로컬에서 진행.
@@ -173,6 +183,7 @@ EOF
 - [ ] 아이디어 5건 이슈 등록 (§ 2-1)
 - [ ] Projects 칸반 보드 생성 + 이슈 연결 (§ 2-2)
 - [ ] `main` 브랜치 보호 규칙 설정 (§ 3)
+- [ ] GitHub Pages Source를 "GitHub Actions"로 설정 (§ 3.5 — 나머지는 이미 배선됨)
 - [ ] 팀원 각자 Obsidian + Obsidian Git + Dataview 설치 (§ 4)
 - [ ] **팀 판정 대기 (ARCHITECTURE.md § 6 참고, 여기서 확정하지 않음)**:
   - Conventional Commits 타입 집합 · scope 강제 여부 · commitlint 등 강제 도구 도입 여부

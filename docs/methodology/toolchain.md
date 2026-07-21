@@ -80,6 +80,8 @@ GitHub는 markdown 안의 ` ```mermaid ` 코드블록을 웹에서 자동으로 
 
 지금 단계(학기 초, 문서량 적음)에서는 **GitHub Pages로 `docs/`를 그대로 노출**하는 정도로 충분하고, 문서가 많아지고 네비게이션이 필요해지면 Quartz나 MkDocs Material 도입을 검토한다. (현재 미확정 — 필요 시점에 팀 판단으로 결정.)
 
+> **파이프라인 배선 완료 (2026-07-21)**: MkDocs Material을 먼저 도입해 배선해뒀다 — 레포 루트 `mkdocs.yml`(테마·nav·mermaid 렌더링 설정) + `.github/workflows/deploy.yml`(main push마다 `mkdocs build` → GitHub Pages 자동 배포) + `requirements.txt`(버전 고정, 재현 가능한 빌드). **남은 수동 단계는 딱 하나**: 저장소 Settings → Pages → Source를 "GitHub Actions"로 설정. 그 후 push마다 자동 배포되며, 사이트 주소는 `https://iejunkimu.github.io/lg-home-ai-team/`.
+
 ## 6. 이미지 — 레포 `assets/`
 
 Notion은 이미지 업로드 시 presigned S3 URL을 발급하는데, 이 URL은 일정 시간 후 만료된다(이번 이주 작업 중 실제로 `docs/ideas/냉장고-erp-서비스.md`에서 이 문제로 원본 이미지 URL을 살리지 못했다). 이 문제를 근본적으로 없애기 위해 이미지는 **레포 안에 직접 저장**한다.

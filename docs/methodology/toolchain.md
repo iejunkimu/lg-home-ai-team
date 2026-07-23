@@ -6,7 +6,7 @@ Notion에서 하던 일을 GitHub/markdown 기반으로 그대로(또는 더 낫
 
 | 기능 | 도구 | Notion에서 하던 일 | 설치 필요 여부 |
 |---|---|---|---|
-| 저작(글쓰기) | Obsidian + Obsidian Git | 페이지 작성/편집 | 앱 설치 + 플러그인 설치 |
+| 저작(글쓰기) | GitHub 웹 또는 원하는 markdown 편집기 | 페이지 작성/편집 | GitHub 웹은 설치 없음 |
 | 로컬 DB 뷰 | Dataview (Obsidian 플러그인) | Notion 데이터베이스 뷰(표/칸반) | 플러그인 설치 |
 | 팀 DB / 투표 | GitHub Issues + Projects | Notion DB의 아이디어 목록·투표·상태 | 없음 (GitHub 내장) |
 | 다이어그램 | Mermaid | Notion 임베드 다이어그램 | 없음 (GitHub·Obsidian 네이티브 렌더) |
@@ -15,9 +15,11 @@ Notion에서 하던 일을 GitHub/markdown 기반으로 그대로(또는 더 낫
 
 ---
 
-## 1. 저작 — Obsidian + Obsidian Git
+## 1. 저작 — GitHub 웹부터, 로컬 도구는 선택
 
-이 레포(`docs/`)의 모든 markdown은 Obsidian으로 열고 편집하는 것을 기준으로 한다. Obsidian은 로컬 markdown 파일을 그대로 다루는 노트 앱이라 git 레포와 궁합이 좋다.
+GitHub가 처음인 팀원은 GitHub 웹에서 markdown 파일을 수정하고 PR을 여는 것만으로 시작할 수 있다. **Obsidian·Dataview·CLI 설치는 첫 PR의 선결 조건이 아니다.**
+
+문서를 자주 쓰거나 로컬에서 편집하고 싶은 팀원은 Obsidian을 선택할 수 있다. Obsidian은 로컬 markdown 파일을 그대로 다루는 노트 앱이라 git 레포와 궁합이 좋다.
 
 **Obsidian Git 플러그인**을 설치하면 일정 주기로 자동 커밋/푸시를 해주거나, 단축키 한 번으로 add-commit-push를 묶어서 실행할 수 있다. 팀원이 git 명령어에 아직 익숙하지 않을 때 진입장벽을 낮추는 용도다. (단, `docs/methodology/git-github-협업.md`의 커밋 메시지 규약과 브랜치 규범은 자동 커밋을 쓰더라도 동일하게 지킨다 — 자동 커밋 메시지를 그대로 두지 말고 의미 있는 메시지로 고쳐 쓰는 습관을 들인다.)
 
@@ -67,20 +69,20 @@ flowchart LR
 
 GitHub는 markdown 안의 ` ```mermaid ` 코드블록을 웹에서 자동으로 렌더링한다. Obsidian도 동일 문법을 네이티브로 지원한다. 별도 설치가 필요 없다 — 둘 다 기본 지원.
 
-## 5. 게시/렌더 — 정적 사이트 or GitHub 내장 뷰어
+## 5. 게시/렌더 — 현재 운영판
 
-문서를 팀 밖(예: 심사, 외부 공유)에 보여줄 때 쓰는 층. 선택지 4가지, 필요에 따라 하나를 고른다:
+현재 운영판은 **MkDocs Material로 빌드하고 GitHub Pages로 배포**한다.
 
-| 방식 | 특징 | 설치 |
-|---|---|---|
-| **Quartz** | Obsidian vault를 거의 그대로 정적 사이트로 변환. Obsidian 문법(`[[wikilink]]` 등) 호환성이 가장 좋음 | Node.js + Quartz CLI |
-| **MkDocs Material** | markdown → 깔끔한 문서 사이트. 검색·네비게이션이 강함, 범용적으로 많이 씀 | Python + `pip install mkdocs-material` |
-| **GitHub Pages** | 위 두 정적 사이트 생성기의 결과물을 무료 호스팅. 또는 별도 생성기 없이 `docs/` 폴더를 그대로 배포 설정 가능 | 레포 Settings → Pages 설정만 |
-| **GitHub Wiki** | 레포에 딸린 별도 wiki 저장소. 설치 없이 즉시 사용 가능하나 커스터마이징은 제한적 | 없음 (레포 기본 기능) |
+- Pull Request: `.github/workflows/validate-docs.yml`이 전체 문서를 `mkdocs build --strict`로 검사한다.
+- `main` merge: `.github/workflows/deploy.yml`이 사이트를 다시 빌드해 Pages에 배포한다.
+- navigation: `mkdocs.yml`에 수동 목록을 두지 않는다. 따라서 `docs/` 아래 새 markdown도 자동으로 탐색 메뉴와 검색에 포함된다.
+- 배포 확인: Pages 배포 뒤 모든 문서의 공개 URL과 navigation 링크를 다시 검사한다.
+- 공개 주소: `https://iejunkimu.github.io/lg-home-ai-team/`
 
-지금 단계(학기 초, 문서량 적음)에서는 **GitHub Pages로 `docs/`를 그대로 노출**하는 정도로 충분하고, 문서가 많아지고 네비게이션이 필요해지면 Quartz나 MkDocs Material 도입을 검토한다. (현재 미확정 — 필요 시점에 팀 판단으로 결정.)
+Quartz나 GitHub Wiki는 현재 운영판이 아니다. 필요가 생기면 팀 판정으로 다시 검토한다.
 
-> **파이프라인 배선 완료 (2026-07-21)**: MkDocs Material을 먼저 도입해 배선해뒀다 — 레포 루트 `mkdocs.yml`(테마·nav·mermaid 렌더링 설정) + `.github/workflows/deploy.yml`(main push마다 `mkdocs build` → GitHub Pages 자동 배포) + `requirements.txt`(버전 고정, 재현 가능한 빌드). **남은 수동 단계는 딱 하나**: 저장소 Settings → Pages → Source를 "GitHub Actions"로 설정. 그 후 push마다 자동 배포되며, 사이트 주소는 `https://iejunkimu.github.io/lg-home-ai-team/`.
+!!! warning "`docs/`는 공개 영역"
+    이 레포와 Pages는 공개돼 있다. `docs/`에 넣고 merge한 파일은 자동으로 navigation과 검색에 나타난다. 팀에 아직 공개할 준비가 안 된 개인 초안·개인정보·비밀값은 `docs/`에 넣지 않는다.
 
 ## 6. 이미지 — 레포 `assets/`
 
@@ -94,11 +96,10 @@ Notion은 이미지 업로드 시 presigned S3 URL을 발급하는데, 이 URL�
 
 ---
 
-## 설치가 필요한 것만 정리
+## 선택해서 설치할 수 있는 것
 
-- **Obsidian** (앱 자체)
-- **Obsidian Git** 플러그인
-- **Dataview** 플러그인
-- (선택) Quartz 또는 MkDocs Material — 게시 사이트를 실제로 만들 때만
+- **Obsidian** (로컬 markdown 저작이 필요할 때)
+- **Obsidian Git** 플러그인 (Obsidian에서 Git 작업을 하고 싶을 때)
+- **Dataview** 플러그인 (로컬 DB 뷰가 필요할 때)
 
-나머지(GitHub Issues/Projects/labels, Mermaid, GitHub Pages/Wiki, `assets/` 폴더)는 GitHub/git 자체 기능이라 별도 설치가 없다.
+나머지(GitHub 웹 편집, Issues/Projects/labels, Mermaid, GitHub Pages, `assets/` 폴더)는 별도 설치가 없다. MkDocs는 Pages workflow가 설치하므로 팀원 개인 설치가 필수는 아니다.

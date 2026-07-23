@@ -2,6 +2,8 @@
 
 > 대상: git 기본 명령(add/commit/branch 정도)은 배웠지만 실제 팀 프로젝트에서 어떻게 협업하는지는 처음인 팀원.
 > 근거: [codingapple git&GitHub 강좌](https://codingapple.com/course/git-and-github/) 목차(설치 → add/commit/diff → branch → merge 전략 → revert/reset/restore → push → clone/pull → PR → git flow/trunk-based → stash) + [GitHub 공식 GitHub Flow 문서](https://docs.github.com/en/get-started/using-github/github-flow) + [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
+>
+> 이 문서는 사용법 가이드다. review·merge 주체와 강제 수준은 [`GitHub 거버넌스 토론 초안`](github-governance-draft.md)의 팀 판정 전까지 확정 규칙이 아니다.
 
 ---
 
@@ -162,9 +164,9 @@ Co-authored-by: 팀원이름 <팀원GitHub이메일>
 
 ---
 
-## 5. 팀 규범 — 순서와 노출 (완성본을 던지지 않는다)
+## 5. 팀 규범 제안 — 순서와 노출 (완성본을 던지지 않는다)
 
-위 GitHub Flow는 GitHub가 공식적으로 정의한 뼈대일 뿐, "언제 PR을 열지"까지 강제하지는 않는다. **이건 매체가 강제하는 규칙이 아니라 우리 팀이 정하는 협업 규범이다.**
+위 GitHub Flow는 GitHub가 공식적으로 정의한 뼈대일 뿐, "언제 PR을 열지"까지 강제하지는 않는다. **이건 매체가 강제하는 규칙이 아니라 우리 팀이 토론할 협업 규범 제안이다.**
 
 문제 의식: 한 사람이 문제를 완전히 풀어서 완성된 결과물을 통째로 던지면, 다른 팀원은 이미 답이 나온 상태에서 시작하게 되어 **스스로 문제를 탐색하고, 다른 접근을 시도해보고, 결과물에 대한 소유감을 가질 기회**가 닫혀버린다. (`docs/process/아이디어-설계-프로세스.md`가 강조하는 "완성된 표현보다 각자 구체화하며 부족한 부분을 발견하는 과정"과 같은 원리다.)
 

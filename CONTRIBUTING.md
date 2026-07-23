@@ -2,9 +2,11 @@
 
 이 레포에서 작업하기 전에 읽는다. 더 자세한 배경·예시는 `docs/methodology/git-github-협업.md`에 있다.
 
+> **현재 상태: 초기 운영 초안.** GitHub Flow를 안전한 출발값으로 사용하고 있지만, review·merge 주체와 강제 수준은 팀이 [`GitHub 거버넌스 토론 초안`](docs/methodology/github-governance-draft.md)을 보고 판정한 뒤 확정한다.
+
 ## 기본 흐름 — GitHub Flow
 
-GitHub 공식 [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow) 6단계를 그대로 따른다.
+현재 출발값으로 GitHub 공식 [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow) 6단계를 따른다.
 
 1. `main`에서 새 브랜치를 판다
 2. 커밋한다 (Conventional Commits 형식)
@@ -42,12 +44,16 @@ chore/짧은-설명       설정·잡무
 Co-authored-by: 이름 <GitHub이메일>
 ```
 
-## PR 규칙
+## PR 규칙 — 현재 제안값
 
-- **리뷰어 1명 이상의 승인 없이 머지 금지.**
-- **`main`에 직접 push 금지** — 모든 변경은 PR을 통해서만 들어온다.
+- **리뷰어 1명 이상의 승인 없이 머지하지 않는다.**
+- **`main`에 직접 push하지 않는다** — 모든 변경은 PR을 통해서만 넣는다.
 - PR 설명에는 무엇을 바꿨고 왜 바꿨는지 적는다. 관련 이슈가 있으면 `Closes #번호`로 링크한다.
 - PR 템플릿(`.github/PULL_REQUEST_TEMPLATE.md`)의 항목(무엇을 바꿨나 / 왜 / 테스트 방법 / 관련 이슈)을 채운다.
+
+위 두 항목은 branch protection으로 강제된 상태인지 아직 확인되지 않았다. 오늘 팀이 운영안을 고르기 전까지의 안전한 기본값이며, 확정 뒤 이 절을 팀 판정에 맞게 갱신한다.
+
+`docs/`는 merge 뒤 공개 Pages의 navigation과 검색에 자동 포함된다. 개인 초안·개인정보·비밀값처럼 공개 준비가 안 된 내용은 `docs/`에 넣지 않는다.
 
 ## 순서와 노출 — 완성본을 먼저 던지지 않는다
 

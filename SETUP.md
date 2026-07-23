@@ -113,9 +113,9 @@ gh project item-add <프로젝트번호> --owner iejunkimu --url https://github.
 
 ---
 
-## 3. `main` 브랜치 보호 규칙
+## 3. `main` 브랜치 보호 규칙 — 팀 판정 뒤 적용
 
-PR 필수 + 리뷰 1명 이상 승인 + `main` 직접 push 금지를 GitHub 설정으로 강제한다 (지금까지는 `CONTRIBUTING.md` 문서 규범일 뿐, 기술적으로 막혀있지 않음).
+PR 필수 + 리뷰 1명 이상 승인 + `main` 직접 push 금지를 적용할지는 팀이 먼저 판정한다. 아래는 그 안을 채택했을 때의 실행 절차다. 지금까지는 `CONTRIBUTING.md`의 초기 제안값일 뿐, 기술적으로 막혀있는지는 미확인이다.
 
 ### (A) `gh` 명령
 
@@ -152,9 +152,9 @@ EOF
 
 ---
 
-## 3.5. GitHub Pages 소스 = "GitHub Actions"
+## 3.5. GitHub Pages 소스 = "GitHub Actions" — 작동 확인
 
-MkDocs Material 빌드·배포는 이미 배선됨 (`mkdocs.yml` + `.github/workflows/deploy.yml` + `requirements.txt`, `docs/methodology/toolchain.md` § 5 참고). `main`에 push할 때마다 자동으로 빌드·배포되지만, Pages 자체가 어느 소스를 쓸지는 저장소 설정에서 한 번 지정해야 한다.
+MkDocs Material 빌드·배포는 배선됐고, 2026-07-23 실제 `main` merge 뒤 Pages 배포와 새 문서 직접 URL의 응답까지 확인했다. 설정을 다시 점검할 때만 아래 경로를 사용한다.
 
 1. 저장소 → **Settings** → **Pages**
 2. **Build and deployment → Source**를 "Deploy from a branch"에서 **"GitHub Actions"**로 변경
@@ -162,9 +162,9 @@ MkDocs Material 빌드·배포는 이미 배선됨 (`mkdocs.yml` + `.github/work
 
 ---
 
-## 4. Obsidian · Obsidian Git · Dataview 플러그인 설치
+## 4. 선택 사항 — Obsidian · Obsidian Git · Dataview
 
-`docs/methodology/toolchain.md` § 1~2 상세 참고. 각 팀원이 로컬에서 진행.
+`docs/methodology/toolchain.md` § 1~2 상세 참고. 첫 PR은 GitHub 웹만으로도 가능하며, 아래 도구는 로컬 저작이 필요한 팀원만 설치한다.
 
 1. **Obsidian 설치**: https://obsidian.md 에서 앱 다운로드·설치
 2. **이 레포를 vault로 열기**: Obsidian 실행 → "Open folder as vault" → 로컬에 클론된 `lg-home-ai-team` 폴더 선택
@@ -183,8 +183,8 @@ MkDocs Material 빌드·배포는 이미 배선됨 (`mkdocs.yml` + `.github/work
 - [ ] 아이디어 5건 이슈 등록 (§ 2-1)
 - [ ] Projects 칸반 보드 생성 + 이슈 연결 (§ 2-2)
 - [ ] `main` 브랜치 보호 규칙 설정 (§ 3)
-- [ ] GitHub Pages Source를 "GitHub Actions"로 설정 (§ 3.5 — 나머지는 이미 배선됨)
-- [ ] 팀원 각자 Obsidian + Obsidian Git + Dataview 설치 (§ 4)
+- [x] GitHub Pages 배포 작동 확인 (§ 3.5, 2026-07-23)
+- [ ] (선택) 필요한 팀원만 Obsidian + Obsidian Git + Dataview 설치 (§ 4)
 - [ ] **팀 판정 대기 (ARCHITECTURE.md § 6 참고, 여기서 확정하지 않음)**:
   - Conventional Commits 타입 집합 · scope 강제 여부 · commitlint 등 강제 도구 도입 여부
   - 브랜치 전략: GitHub Flow 유지 vs trunk-based 전환

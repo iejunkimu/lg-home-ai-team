@@ -35,8 +35,8 @@ lg-home-ai-team/
 ├── docs/
 │   ├── process/                       아이디어 설계 프로세스 · 선택 기준 · 회의록
 │   │                                   (Notion 원본 이관, verbatim 보존)
-│   ├── ideas/                         후보 아이디어 5건 상세 문서
-│   │                                   (Notion 원본 이관, verbatim 보존)
+│   ├── ideas/                         후보·조사 아이디어 문서
+│   │                                   (Notion 이관 5건 + 이후 팀 제안)
 │   └── methodology/
 │       ├── git-github-협업.md         git/GitHub 협업 가이드 (초보 팀원용)
 │       └── toolchain.md               저장층 셋업 가이드 (Notion → GitHub 이주)
@@ -54,7 +54,7 @@ lg-home-ai-team/
 ### 폴더별 역할
 
 - **`docs/process/`** — "어떻게 아이디어를 짜는가"에 대한 방법론과 그 과정의 기록. 9단계 설계 프레임워크, 아이디어 선택 기준(1차 knockout → 2차 평점 → 3차 가중), 회의록. 팀의 의사결정 근거가 여기 쌓인다.
-- **`docs/ideas/`** — 후보 아이디어 5건 각각의 상세 문서 (AI Virtual Zoning, 냉장고 ERP 서비스, 베이비 제로터치 로그, 스마트옷장, 유럽 타겟팅 에어컨 시스템). Notion 원본을 그대로 옮긴 것으로, 재작성하지 않는다 (§ 4 참고).
+- **`docs/ideas/`** — 후보·조사 아이디어 문서. 최초 5건은 Notion 원본을 그대로 옮긴 것이며 재작성하지 않는다. 이후 팀원이 PR로 제안한 문서도 여기에 쌓인다 (§ 4 참고).
 - **`docs/methodology/`** — 팀이 "어떻게 협업 도구를 쓰는가"에 대한 가이드. 아이디어 콘텐츠가 아니라 협업 인프라 문서.
 - **`.github/`** — GitHub 네이티브 협업 장치(이슈 템플릿, PR 템플릿, 라벨 정의)의 설정 소스.
 - **`assets/`** — 이미지 등 바이너리 자산. Notion의 presigned S3 URL이 만료되는 문제(`docs/ideas/냉장고-erp-서비스.md`에서 실제로 겪음)를 피하려고 레포 안에 직접 저장한다.
@@ -96,10 +96,10 @@ git/GitHub의 각 매체는 단순한 "저장 수단"이 아니라, **"누가·�
 
 상세는 `docs/methodology/toolchain.md` 참고. 핵심만:
 
-- **저작**: Obsidian + Obsidian Git 플러그인 — 로컬 markdown 편집 + 주기적/수동 커밋·푸시.
+- **저작**: GitHub 웹 또는 원하는 markdown 편집기. Obsidian + Obsidian Git은 로컬 저작이 필요한 팀원의 선택 도구다.
 - **로컬 DB 뷰**: Dataview 플러그인 — frontmatter(`status`, `votes` 등) 기반 표/칸반 쿼리. Notion 데이터베이스 뷰의 로컬 대체.
 - **다이어그램**: Mermaid — GitHub·Obsidian 둘 다 네이티브 렌더, 설치 불필요.
-- **게시**: Quartz / MkDocs Material / GitHub Pages / GitHub Wiki 중 택1 (현재는 GitHub Pages로 `docs/` 그대로 노출하는 정도로 충분, 필요 시점에 재검토).
+- **게시**: MkDocs Material + GitHub Pages. `docs/`의 모든 markdown을 자동으로 navigation과 검색에 포함한다.
 
 ---
 
@@ -138,7 +138,7 @@ flowchart TB
     subgraph Team["lg-home-ai-team (GitHub, 팀 공개)"]
         subgraph Folders["폴더 구조"]
             DP["docs/process/\n설계 프로세스·선택 기준·회의록"]
-            DI["docs/ideas/\n아이디어 5건 (verbatim)"]
+            DI["docs/ideas/\nNotion 이관 5건 + 이후 팀 제안"]
             DM["docs/methodology/\ngit·GitHub·toolchain 가이드"]
             GH[".github/\n이슈·PR 템플릿, labels"]
             AS["assets/\n이미지·다이어그램"]

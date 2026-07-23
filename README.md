@@ -16,7 +16,7 @@ lg-home-ai-team/
 ├── CONTRIBUTING.md                    협업 규칙 — 처음 커밋하기 전에 읽기
 ├── docs/
 │   ├── process/                       아이디어 설계 프로세스·선택 기준·회의록 (Notion 원본)
-│   ├── ideas/                         후보 아이디어 5건 상세 (Notion 원본)
+│   ├── ideas/                         Notion 이관 5건 + 이후 팀 제안
 │   └── methodology/
 │       ├── git-github-협업.md         git/GitHub 협업 가이드 (초보용)
 │       └── toolchain.md               Notion→GitHub 저장층 셋업 가이드

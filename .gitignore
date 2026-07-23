@@ -23,6 +23,7 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+site/
 
 # Large media (track via Git LFS instead if needed)
 *.mp4

@@ -33,6 +33,9 @@ jobs:
       - name: Build site
         run: mkdocs build --strict
 
+      - name: Check every doc is discoverable
+        run: python scripts/check_docs_discoverable.py
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -46,6 +49,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -53,3 +58,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify published docs
+        env:
+          SITE_URL: ${{ needs.deploy.outputs.page_url }}
+        run: python scripts/check_published_docs.py

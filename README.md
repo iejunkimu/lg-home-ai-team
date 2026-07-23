@@ -31,7 +31,8 @@ lg-home-ai-team/
 
 ### 어디서부터 볼까
 
-- **처음 온 팀원**: `CONTRIBUTING.md` → `docs/methodology/git-github-협업.md` 순서로 읽는다.
+- **GitHub가 처음인 팀원**: `docs/methodology/git-github-협업.md` § 0에서 웹만으로 첫 PR을 시작한다.
+- **협업 규칙의 현재 제안값**: `CONTRIBUTING.md`를 읽는다.
 - **아이디어 현황이 궁금하면**: `docs/process/아이디어-선택-기준.md`(판단 기준 + 4개 후보 비교)와 `docs/ideas/`(각 후보 상세) 를 본다.
 - **왜 이런 프로세스로 아이디어를 짜는지 궁금하면**: `docs/process/아이디어-설계-프로세스.md` (9단계 설계 프레임워크, LG 역대 우수작 LOCUS/HomeQuest 분석 포함).
 - **Notion → GitHub 이주가 왜/어떻게 됐는지 궁금하면**: `docs/process/_notion-recovery-index.md`.

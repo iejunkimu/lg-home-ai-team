@@ -7,6 +7,95 @@
 
 ---
 
+## 0. 아무것도 모를 때 먼저 볼 그림
+
+### Git과 GitHub는 다르다
+
+- **git** — 내 컴퓨터와 변경 이력을 관리하는 도구
+- **GitHub** — git 저장소를 팀이 함께 보고 review하는 웹 서비스
+- **GitHub Pages** — `main`의 `docs/`를 읽기 편한 사이트로 보여주는 공개 화면
+
+파일 하나가 공개 사이트에 도착하는 과정은 다음과 같다.
+
+```mermaid
+flowchart LR
+    A["내 작업\nGitHub 웹 또는 로컬"] --> B["remote branch\nGitHub에 올라온 작업 가지"]
+    B --> C["Pull Request\nmain에 넣어도 되는지 review"]
+    C --> D["main\n팀 정본"]
+    D --> E["GitHub Actions\n자동 검사·배포"]
+    E --> F["GitHub Pages\n공개 읽기 화면"]
+```
+
+!!! important "push했다고 main이나 Pages가 바뀌는 것은 아니다"
+    `push`는 현재 branch를 GitHub에 올리는 동작이다. 그 branch로 PR을 열고 `main`에 merge해야 팀 정본이 바뀐다. Pages는 그 뒤 자동으로 갱신된다.
+
+실제 예:
+
+- `codex/auto-publish-docs`가 GitHub에 있어도 `main` 화면에는 보이지 않을 수 있다.
+- PR이 아직 없으면 Pull requests 탭에는 나타나지 않는다.
+- `main`에 merge되기 전에는 운영 Pages도 이전 상태다.
+
+### GitHub 화면의 핵심 기능
+
+| 화면 | 한 문장 역할 | 처음 할 일 |
+|---|---|---|
+| **Code** | `main`과 각 branch의 파일을 본다. | branch 선택기가 `main`인지 확인한다. |
+| **Issues** | 아직 파일을 고치지 않은 질문·아이디어·할 일을 논의한다. | 아이디어나 작업을 한 건씩 연다. |
+| **Pull requests** | branch의 변경 diff를 보고 `main` 반영 여부를 판단한다. | `Files changed`에서 실제 변경을 본다. |
+| **Actions** | 자동 빌드·검사가 성공했는지 본다. | 초록 체크인지 확인한다. |
+| **Projects** | 여러 Issue의 진행 상태를 보드로 본다. | 필요해질 때 사용한다. 첫 PR의 선결 조건은 아니다. |
+| **Pages** | `main`의 문서를 외부에 보여준다. | merge 뒤 공개 화면을 확인한다. |
+| **Settings** | 권한·branch protection·Pages를 관리한다. | 초기 maintainer만 먼저 다룬다. |
+
+### GitHub 웹만으로 첫 문서 PR 만들기
+
+설치 없이 첫 회차를 돌릴 수 있다.
+
+#### 작성자
+
+1. GitHub에서 레포의 **Code** 탭을 연다.
+2. 바꾸려는 markdown 파일을 열고 연필 아이콘 **Edit this file**을 누른다.
+3. 내용을 작게 수정한다.
+4. **Commit changes...**를 누른다.
+5. `Create a new branch for this commit and start a pull request`를 선택한다.
+6. branch 이름을 `docs/짧은-설명`으로 적고 **Propose changes**를 누른다.
+7. PR 화면에서 아래 두 줄을 적고 **Create pull request**를 누른다.
+
+```text
+무엇: 어떤 문서를 어떻게 바꿨다.
+왜: 어떤 혼란이나 문제를 해결하려고 바꿨다.
+```
+
+#### reviewer
+
+1. **Pull requests** 탭에서 PR을 연다.
+2. **Files changed**에서 초록색 추가와 빨간색 삭제를 본다.
+3. 다음 세 가지만 확인한다.
+   - 작성자가 말한 변경과 실제 diff가 같은가?
+   - 내용이 팀 방향과 충돌하지 않는가?
+   - 공개돼도 되는 내용인가?
+4. **Review changes**에서 Comment, Approve, Request changes 중 하나를 고른다.
+
+#### merge 담당자
+
+1. Actions의 문서 검사가 초록색인지 확인한다.
+2. 팀이 정한 주체가 **Merge pull request**를 누른다.
+3. merge 뒤 branch를 삭제한다.
+4. Actions의 Pages 배포가 끝난 뒤 공개 사이트에서 문서를 확인한다.
+
+처음 회차에는 작성자·reviewer·merge 담당자를 서로 다른 사람이 맡아도 되고, 화면을 함께 보면서 진행해도 된다. 다음 PR에서 역할을 바꾸면 된다.
+
+### 권한 때문에 버튼이 안 보일 때
+
+- 레포에 초대받지 않았거나 write 권한이 없을 수 있다.
+- 로그인한 GitHub 계정이 초대받은 계정과 다른지 확인한다.
+- 작성자는 자기 PR에 의견을 달 수 있지만, required review의 자기 승인으로 계산되지는 않는다.
+- Settings가 안 보이는 것은 보통 관리자 권한이 없기 때문이다.
+
+이 경우 파일이나 명령 문제가 아니라 **계정·collaborator 권한 문제**이므로 초기 maintainer에게 먼저 알린다.
+
+---
+
 ## 1. 왜 git / GitHub 인가
 
 코드든 문서든 발표자료든, 여러 명이 같은 파일을 동시에 고치면 반드시 사고가 난다. git은 파일 변경 이력을 통째로 관리해주는 버전관리 프로그램이고, GitHub는 그 git 저장소(repository)를 온라인에 올려 팀원끼리 공유·백업·협업할 수 있게 해주는 서비스다.
